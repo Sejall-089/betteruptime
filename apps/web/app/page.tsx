@@ -1,101 +1,106 @@
-import Image, { type ImageProps } from "next/image";
-import { Button } from "@repo/ui/button";
-import styles from "./page.module.css";
+import Link from "next/link";
+import {
+  ArrowRightIcon,
+  BellSimpleIcon,
+  GlobeIcon,
+  ShieldCheckIcon,
+} from "@phosphor-icons/react/dist/ssr";
+import { Brand } from "@/components/Brand";
 
-type Props = Omit<ImageProps, "src"> & {
-  srcLight: string;
-  srcDark: string;
-};
-
-const ThemeImage = (props: Props) => {
-  const { srcLight, srcDark, ...rest } = props;
-
+export default function HomePage() {
   return (
-    <>
-      <Image {...rest} src={srcLight} className="imgLight" />
-      <Image {...rest} src={srcDark} className="imgDark" />
-    </>
-  );
-};
-
-export default function Home() {
-  return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <ThemeImage
-          className={styles.logo}
-          srcLight="turborepo-dark.svg"
-          srcDark="turborepo-light.svg"
-          alt="Turborepo logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>apps/web/app/page.tsx</code>
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new/clone?demo-description=Learn+to+implement+a+monorepo+with+a+two+Next.js+sites+that+has+installed+three+local+packages.&demo-image=%2F%2Fimages.ctfassets.net%2Fe5382hct74si%2F4K8ZISWAzJ8X1504ca0zmC%2F0b21a1c6246add355e55816278ef54bc%2FBasic.png&demo-title=Monorepo+with+Turborepo&demo-url=https%3A%2F%2Fexamples-basic-web.vercel.sh%2F&from=templates&project-name=Monorepo+with+Turborepo&repository-name=monorepo-turborepo&repository-url=https%3A%2F%2Fgithub.com%2Fvercel%2Fturborepo%2Ftree%2Fmain%2Fexamples%2Fbasic&root-directory=apps%2Fdocs&skippable-integrations=1&teamSlug=vercel&utm_source=create-turbo"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://turborepo.dev/docs?utm_source"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <div>
+      {/* Nav */}
+      <header className="border-b border-line">
+        <div className="max-w-[1080px] mx-auto px-6 h-16 flex items-center">
+          <Brand />
+          <div className="ml-auto flex items-center gap-2">
+            <Link href="/signin" className="btn btn-ghost btn-sm">
+              Sign in
+            </Link>
+            <Link href="/signup" className="btn btn-primary btn-sm">
+              Get started
+            </Link>
+          </div>
         </div>
-        <Button appName="web" className={styles.secondary}>
-          Open alert
-        </Button>
-      </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com/templates?search=turborepo&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
+      </header>
+
+      {/* Hero */}
+      <section className="max-w-[1080px] mx-auto px-6 pt-28 pb-24 text-center">
+        <h1
+          className="font-display font-bold tracking-[-0.03em] leading-[1.05]"
+          style={{ fontSize: "clamp(40px, 6vw, 64px)" }}
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://turborepo.dev?utm_source=create-turbo"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to turborepo.dev →
-        </a>
+          Know the moment your
+          <br />
+          site goes down.
+        </h1>
+        <p className="mt-6 text-ink2 text-[17px] leading-relaxed max-w-[520px] mx-auto">
+          Add a URL. We&apos;ll check it every 3 minutes and tell you the second
+          something breaks. Nothing more.
+        </p>
+        <div className="mt-9 flex gap-3 items-center justify-center">
+          <Link href="/signup" className="btn btn-primary btn-lg">
+            Start monitoring <ArrowRightIcon size={16} weight="bold" />
+          </Link>
+          <Link href="/dashboard" className="btn btn-secondary btn-lg">
+            See demo
+          </Link>
+        </div>
+        <p className="mt-5 text-[13px] text-ink3">
+          Free for up to 10 monitors. No credit card required.
+        </p>
+      </section>
+
+      {/* Features */}
+      <section className="max-w-[1080px] mx-auto px-6 pb-28">
+        <div className="grid sm:grid-cols-3 gap-4">
+          {[
+            {
+              icon: <GlobeIcon size={20} />,
+              title: "Simple checks",
+              body: "We ping your URL every 60 seconds and record the response.",
+            },
+            {
+              icon: <BellSimpleIcon size={20} />,
+              title: "Instant alerts",
+              body: "Email or Slack the moment we detect downtime — no noise.",
+            },
+            {
+              icon: <ShieldCheckIcon size={20} />,
+              title: "Uptime history",
+              body: "30 days of uptime, response times, and incidents at a glance.",
+            },
+          ].map((f) => (
+            <div key={f.title} className="card p-6">
+              <div className="w-9 h-9 rounded-md grid place-items-center text-brand bg-brand/10 mb-4">
+                {f.icon}
+              </div>
+              <h3 className="font-display font-semibold text-[18px] mb-1.5">
+                {f.title}
+              </h3>
+              <p className="text-ink2 text-[14px] leading-relaxed">{f.body}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-line">
+        <div className="max-w-[1080px] mx-auto px-6 h-14 flex items-center justify-between text-[13px] text-ink3">
+          <span>© 2026 Betteruptime</span>
+          <div className="flex gap-5">
+            <Link href="#" className="hover:text-ink">
+              Privacy
+            </Link>
+            <Link href="#" className="hover:text-ink">
+              Terms
+            </Link>
+            <Link href="#" className="hover:text-ink">
+              Contact
+            </Link>
+          </div>
+        </div>
       </footer>
     </div>
   );

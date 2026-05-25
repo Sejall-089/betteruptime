@@ -1,0 +1,20 @@
+{
+  "name": "pusher",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node ./dist/index.js",
+    "dev": "npm --prefix ../../packages/redis-streams run build && npm --prefix ../../packages/db run build && bun run build && bun run start"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@repo/redis-streams": "workspace:*",
+    "@repo/db": "workspace:*",
+    "@repo/typescript-config": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

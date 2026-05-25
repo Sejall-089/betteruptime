@@ -11,14 +11,24 @@
     "check-types": "next typegen && tsc --noEmit"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.4.0",
+    "@phosphor-icons/react": "^2.1.10",
     "@repo/ui": "workspace:*",
+    "@tailwindcss/postcss": "^4.3.0",
+    "axios": "^1.16.1",
     "next": "16.2.0",
+    "postcss": "^8.5.15",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "react-hook-form": "^7.76.1",
+    "tailwindcss": "^4.3.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
+    "@repo/common": "workspace:*",
+    "@repo/db": "workspace:*",
     "@types/node": "^22.15.3",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",

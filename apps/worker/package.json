@@ -1,0 +1,24 @@
+{
+  "name": "worker",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "tsc -b",
+    "start": "node ./dist/index.js",
+    "dev": "npm --prefix ../../packages/redis-streams run build && npm --prefix ../../packages/db run build && bun run build && bun run start"
+  },
+  "devDependencies": {
+    "@repo/db": "workspace:*",
+    "@repo/redis-streams": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/bun": "latest",
+    "@types/node": "^25.9.1"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "axios": "^1.16.1"
+  }
+}
